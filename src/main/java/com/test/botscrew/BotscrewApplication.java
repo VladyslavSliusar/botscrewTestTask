@@ -1,6 +1,6 @@
 package com.test.botscrew;
 
-import com.test.botscrew.service.UniversityStructureService;
+import com.test.botscrew.handler.UniversityStructureCommandHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,22 +12,21 @@ import java.util.Scanner;
 @RequiredArgsConstructor
 public class BotscrewApplication implements CommandLineRunner {
 
-    private final UniversityStructureService service;
+    private final UniversityStructureCommandHandler handler;
 
     public static void main(String[] args) {
         SpringApplication.run(BotscrewApplication.class, args);
     }
 
     @Override
-    public void run(String... args){
+    public void run(String... args) {
         String inputText;
-        service.initDefaultData();
-        try( Scanner scanner = new Scanner(System.in)){
-            while (true){
+        try (Scanner scanner = new Scanner(System.in)) {
+            while (true) {
                 System.out.print("Enter your command: ");
                 inputText = scanner.nextLine();
-                if(inputText.equals("finish")) return;
-                System.out.println(service.handleInputCommand(inputText));
+                if ("finish".equals(inputText)) return;
+                System.out.println(handler.handleInputCommand(inputText));
             }
         }
     }

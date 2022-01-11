@@ -1,4 +1,4 @@
-package com.test.botscrew;
+package com.test.botscrew.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;

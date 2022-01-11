@@ -1,6 +1,5 @@
 package com.test.botscrew.entity;
 
-import com.test.botscrew.metadata.LectorDegree;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
