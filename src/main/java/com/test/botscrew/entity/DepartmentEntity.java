@@ -3,7 +3,6 @@ package com.test.botscrew.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ public class DepartmentEntity {
     inverseJoinColumns = @JoinColumn(name = "lector_id"))
     private List<LectorEntity> lectorsList = new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "lector_id")
     private LectorEntity head;
 

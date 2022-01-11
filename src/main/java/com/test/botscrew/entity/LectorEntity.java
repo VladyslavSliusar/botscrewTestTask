@@ -31,10 +31,10 @@ public class LectorEntity {
     @ManyToMany(mappedBy = "lectorsList", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<DepartmentEntity> departmentsList = new ArrayList<>();
 
-    public LectorEntity(String name, List<DepartmentEntity> departmentsList) {
-        this.salary = 10000;
-        this.degree = LectorDegree.ASSISTANT;
+    public LectorEntity(String name, int salary, LectorDegree degree, List<DepartmentEntity> departmentsList) {
         this.name = name;
+        this.salary = salary;
+        this.degree = degree;
         this.departmentsList = departmentsList;
     }
 }

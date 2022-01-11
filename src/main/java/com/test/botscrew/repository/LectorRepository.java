@@ -1,4 +1,4 @@
-package com.test.botscrew.dao;
+package com.test.botscrew.repository;
 
 import com.test.botscrew.entity.LectorEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
