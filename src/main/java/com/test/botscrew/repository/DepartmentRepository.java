@@ -12,24 +12,9 @@ import java.util.Optional;
 public interface DepartmentRepository extends JpaRepository<DepartmentEntity, Long> {
     Optional<DepartmentEntity> findByName(String departmentName);
 
-    @Query(value = "SELECT l.degree, count(*) from department as dep " +
-            "join department_lector dl USING(department_id) " +
-            "join lector l on l.lector_id = dl.lector_id " +
-            "WHERE dep.name = :departmentName " +
-            "GROUP BY l.degree", nativeQuery = true)
-    Optional<List<DepartmentStatisticData>> getDepartmentDegreeStatistic(@Param("departmentName") String departmentName);
+    List<DepartmentEntity> findAllByNameContaining(String template);
 
-    @Query(value = "SELECT avg(l.salary) from department as dep " +
-            "join department_lector dl USING(department_id) " +
-            "join lector l on l.lector_id = dl.lector_id " +
-            "WHERE dep.name = :departmentName " +
-            "GROUP BY dep.department_id", nativeQuery = true)
-    Optional<Float> getDepartmentAverageSalary(@Param("departmentName") String departmentName);
-
-    @Query(value = "SELECT count(*) from department as dep " +
-            "join department_lector dl USING(department_id) " +
-            "join lector l on l.lector_id = dl.lector_id " +
-            "WHERE dep.name = :departmentName ", nativeQuery = true)
-    Optional<Integer> getDepartmentEmployeeCount(@Param("departmentName") String departmentName);
+    @Query("SELECT l.degree as degree, count(d.id) as count FROM DepartmentEntity d INNER JOIN d.lectorsList l where d.name = :departmentName GROUP BY l.degree")
+    List<DepartmentStatisticData> getDepartmentDegreeStatistic(@Param("departmentName") String departmentName);
 
 }
