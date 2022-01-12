@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Table(name = "DEPARTMENT")
+@Table(name = "departments")
 @Getter
 @Setter
 @Entity
@@ -22,13 +22,13 @@ public class DepartmentEntity {
     private String name;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinTable (name = "department_lector",
+    @JoinTable (name = "departments_lectors",
     joinColumns = @JoinColumn(name = "department_id"),
     inverseJoinColumns = @JoinColumn(name = "lector_id"))
     private List<LectorEntity> lectorsList = new ArrayList<>();
 
     @OneToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "lector_id")
+    @JoinColumn(name = "department_head")
     private LectorEntity head;
 
     public DepartmentEntity(String name, List<LectorEntity> lectorsList, LectorEntity head) {

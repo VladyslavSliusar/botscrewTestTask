@@ -8,6 +8,12 @@ group = 'com.example.botscrew'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
+def spring_boot_starter_version = '2.6.2'
+def flyway_version = '8.4.1'
+def lombok_version = '1.18.22'
+def postgresql_version = '42.3.1'
+
+
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
@@ -19,13 +25,13 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    compileOnly 'org.projectlombok:lombok'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'org.postgresql:postgresql'
-    annotationProcessor 'org.projectlombok:lombok'
+    implementation "org.springframework.boot:spring-boot-starter:${spring_boot_starter_version}"
+    implementation "org.springframework.boot:spring-boot-starter-data-jdbc:${spring_boot_starter_version}"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:${spring_boot_starter_version}"
+    implementation("org.flywaydb:flyway-core:${flyway_version}")
+    compileOnly "org.projectlombok:lombok:${lombok_version}"
+    runtimeOnly "org.postgresql:postgresql:${postgresql_version}"
+    annotationProcessor "org.projectlombok:lombok:${lombok_version}"
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
